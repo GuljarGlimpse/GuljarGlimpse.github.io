@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulshan Nabila - Professional UI/UX Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Scheme based on provided images: Teal, Cyan, and Blue */
+            --primary: #00bcd4; /* Vibrant Cyan/Teal */
+            --primary-dark: #00838f; /* Darker Teal */
+            --secondary: #4dd0e1; /* Lighter Teal */
+            --accent: #80deea; /* Soft Cyan */
+            --dark: #111827; /* Gray-900 */
+            --gray-800: #1f2937;
+            --gray-700: #374151;
+            --gray-500: #6b7280;
+            --gray-300: #d1d5db;
+            --gray-100: #f3f4f6;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-700);
+            overflow-x: hidden;
+            background-color: var(--gray-100);
+        }
+
+        /* --- NEW HEADER / NAVBAR STYLES --- */
+        .header {
+            position: fixed;
+            top: 20px; /* Position from the top */
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center; /* Center the nav container */
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px; /* Control the max width */
+            margin: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 0.75rem 2rem;
+            border-radius: 50px; /* Rounded corners */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .header.scrolled .nav-container {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 0.25rem;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.7), rgba(0, 131, 143, 0.7));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.2);
+        }
+
+        .cta-btn:hover {
+            background: var(--gradient);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+        }
+        
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION ADJUSTMENT --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center; /* This will vertically center the content */
+            justify-content: center; /* This will horizontally center the content */
+            background-image: url(3.jpg);
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0 40px; /* Added more top padding to account for navbar */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0.05;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .hero-avatar {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            border: 5px solid var(--primary);
+            box-shadow: var(--shadow-lg);
+            animation: float 6s ease-in-out infinite;
+            background-image: url(Rectangl11e_3466192.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff, #e0f2f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid transparent;
+        }
+        
+        /* --- NEW CONTACT BUTTON STYLE --- */
+        .btn-primary.btn-colorful {
+            background: var(--gradient);
+            color: white;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary.btn-colorful:hover {
+             box-shadow: 0 10px 25px rgba(0, 188, 212, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 188, 212, 0.3);
+            border-color: transparent;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 1rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .services {
+            padding: 6rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-100);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: var(--gray-500);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .service-features li {
+            padding: 0.25rem 0;
+            color: var(--gray-500);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .service-card .cta-btn {
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .portfolio {
+            padding: 6rem 0;
+            background-image: url(3.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .portfolio .section-title,
+        .portfolio .section-subtitle {
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .portfolio-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portfolio-item iframe {
+            display: block;
+            width: 100%;
+            border: none;
+        }
+
+        .about {
+            padding: 6rem 0;
+            background: white;
+            color: var(--gray-800);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--gray-700);
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* --- HIGHLIGHT CARD EFFECT --- */
+        .highlight {
+            text-align: center;
+            padding: 0; /* Removed padding from parent */
+            background: rgba(0, 188, 212, 0.05);
+            border: 1px solid rgba(0, 188, 212, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden; /* Important for the effect */
+            z-index: 1;
+            box-shadow: var(--shadow); /* Added shadow */
+        }
+        
+        .highlight::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%; /* Increased size to ensure full coverage during spin */
+            height: 200%;
+            z-index: -1;
+            background: conic-gradient(
+                from 0deg,
+                var(--accent),
+                var(--secondary),
+                var(--primary),
+                var(--secondary),
+                var(--accent)
+            );
+            transform: translate(-50%, -50%) rotate(0deg);
+            transition: transform 1s linear, opacity 0.3s ease; /* Synced transition */
+            opacity: 0;
+        }
+
+        .highlight:hover::before {
+            transform: translate(-50%, -50%) rotate(360deg);
+            opacity: 1;
+        }
+        
+        .highlight:hover {
+            transform: translateY(-5px);
+            color: var(--white);
+        }
+
+        .highlight:hover .highlight-number,
+        .highlight:hover .highlight-text {
+             color: var(--white);
+             text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Inner content wrapper for hover effect */
+        .highlight .highlight-content {
+            background: white;
+            border-radius: 12px; /* Slightly smaller than parent */
+            padding: 1.5rem; /* Moved padding here */
+            transition: background-color 0.3s ease; /* Synced transition */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .highlight:hover .highlight-content {
+            background-color: transparent;
+        }
+        
+        /* Darker text */
+        .highlight-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .highlight-text {
+            font-size: 0.9rem;
+            color: var(--gray-800);
+            transition: color 0.3s ease;
+        }
+        
+        /* --- USEFUL LINKS SECTION UPDATED --- */
+        .useful-links {
+            padding: 6rem 0;
+            background: var(--gray-100);
+        }
+
+        .useful-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .link-card {
+            background: white;
+            border: 1px solid var(--gray-100);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .link-icon-wrapper {
+            height: 60px;
+            width: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .link-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .link-desc {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .contact {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .contact .section-title,
+        .contact .section-subtitle {
+            color: var(--dark);
+        }
+        .contact .section-subtitle {
+            color: var(--gray-500);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            background: var(--gray-100);
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        .contact-detail-item:hover {
+            color: var(--primary);
+        }
+
+        .contact-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--dark);
+        }
+
+        .contact-detail-item span {
+            color: var(--gray-500);
+        }
+
+        .contact-form-wrapper {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form-wrapper h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--gray-300);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .footer {
+            background-color: #173344;
+            color: var(--white);
+            padding: 6rem 0 2rem 0;
+        }
+
+        .footer .logo {
+            color: var(--white);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col .footer-about {
+            margin-top: 1rem;
+            color: var(--white);
+            line-height: 1.8;
+            max-width: 250px;
+        }
+
+        .footer-heading {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .footer-contact {
+            list-style: none;
+            color: var(--white);
+        }
+
+        .footer-contact li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+            color: var(--white);
+            font-size: 1.25rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gray-700);
+            border-radius: 50%;
+        }
+        
+        .footer-social a:hover {
+            color: var(--white);
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--gray-800);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+
+        @media (max-width: 992px) {
+            .nav-links, .cta-btn {
+                display: none;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-container {
+                max-width: 100%;
+                margin: 0 1rem;
+            }
+            
+            .main-nav .nav-links {
+                display: none;
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 1rem;
+                right: 1rem;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 1.5rem;
+                box-shadow: var(--shadow-lg);
+                gap: 1.5rem;
+                text-align: center;
+                border-radius: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .main-nav.active .nav-links {
+                display: flex;
+            }
+
+            .main-nav .nav-links a {
+                color: var(--dark);
+                font-weight: 600;
+            }
+            
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                padding: 2.5rem;
+                gap: 3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid, .portfolio-grid, .useful-links-grid {
+                 grid-template-columns: 1fr;
+            }
+
+            .useful-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-wrapper {
+                padding: 2rem;
+            }
+            @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid, .portfolio-grid, .useful-links-grid {
+                 grid-template-columns: 1fr;
+            }
+
+            .contact-wrapper {
+                padding: 2rem;
+            }
+            .footer-col .footer-about {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .footer-social {
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">Nabila</div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#useful-links">Useful Links</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+             <a href="https://calendly.com/hosguljar/30min?month=2025-09" class="cta-btn" id="desktop-cta" target="_blank">Book a Call</a>
+             <button class="mobile-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-avatar fade-in"></div>
+                <h1 class="fade-in">GULSHAN NABILA</h1>
+                <p class="hero-subtitle fade-in">Passionate UI/UX Designer crafting seamless, user-friendly digital experiences.</p>
+                <div class="hero-stats fade-in">
+                    <div class="stat">
+                        <span class="stat-number">3+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">Figma</span>
+                        <span class="stat-label">Expert</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">User-Centric</span>
+                        <span class="stat-label">Design Focus</span>
+                    </div>
+                </div>
+                <div class="hero-buttons fade-in">
+                    <a href="#portfolio" class="btn btn-primary">
+                        <i class="fas fa-palette"></i>
+                        View Portfolio
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-paper-plane"></i>
+                        Let's Talk
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">My Services</h2>
+                    <p class="section-subtitle">Crafting clean, modern, and efficient design systems that deliver real impact.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon"><i class="fas fa-star"></i></div>
+                        <h3 class="service-title">Logo Design</h3>
+                        <p class="service-description">Custom logo design with multiple variations and brand guidelines.</p>
+                        <div class="service-price">$150</div>
+                        <ul class="service-features">
+                            <li>Multiple concept variations</li>
+                            <li>Unlimited revisions</li>
+                            <li>All source files included</li>
+                            <li>Brand guidelines</li>
+                    </ul>
+                     <a href="https://calendly.com/hosguljar/30min?month=2025-09" class="btn cta-btn" target="_blank">Book a Call</a>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon"><i class="fas fa-globe"></i></div>
+                        <h3 class="service-title">Landing Page Design</h3>
+                        <p class="service-description">Conversion-optimized landing pages that turn visitors into customers.</p>
+                        <div class="service-price">$199</div>
+                        <ul class="service-features">
+                            <li>Mobile responsive design</li>
+                            <li>Conversion optimized</li>
+                            <li>Additional pages: $100 each</li>
+                            <li>SEO structure included</li>
+                    </ul>
+                     <a href="https://calendly.com/hosguljar/30min?month=2025-09" class="btn cta-btn" target="_blank">Book a Call</a>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon"><i class="fas fa-desktop"></i></div>
+                        <h3 class="service-title">SaaS Landing Page</h3>
+                        <p class="service-description">Feature-rich SaaS landing pages with pricing tables and trial CTAs.</p>
+                        <div class="service-price">$299</div>
+                        <ul class="service-features">
+                            <li>Feature highlighting</li>
+                            <li>Pricing table integration</li>
+                            <li>Free trial CTAs</li>
+                            <li>User journey optimized</li>
+                    </ul>
+                     <a href="https://calendly.com/hosguljar/30min?month=2025-09" class="btn cta-btn" target="_blank">Book a Call</a>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3 class="service-title">Mobile App Design</h3>
+                        <p class="service-description">Complete mobile app UI/UX design for iOS and Android.</p>
+                        <div class="service-price">$599</div>
+                        <ul class="service-features">
+                            <li>10 custom app screens</li>
+                            <li>iOS & Android guidelines</li>
+                            <li>Interactive prototype</li>
+                            <li>Additional screens: $50 each</li>
+                    </ul>
+                     <a href="https://calendly.com/hosguljar/30min?month=2025-09" class="btn cta-btn" target="_blank">Book a Call</a>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+                        <h3 class="service-title">Complete Website Design</h3>
+                        <p class="service-description">Full website solution with consistent brand identity.</p>
+                        <div class="service-price">$499</div>
+                        <ul class="service-features">
+                            <li>5 pages included</li>
+                            <li>Consistent brand identity</li>
+                            <li>User journey optimized</li>
+                            <li>Additional pages: $200 each</li>
+                    </ul>
+                     <a href="https://calendly.com/hosguljar/30min?month=2025-09" class="btn cta-btn" target="_blank">Book a Call</a>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="service-title">Design + Development</h3>
+                        <p class="service-description">Complete solution from design to live website deployment.</p>
+                        <div class="service-price">$999</div>
+                        <ul class="service-features">
+                            <li>Full website solution</li>
+                            <li>Live deployment</li>
+                            <li>CMS integration</li>
+                            <li>SEO optimized</li>
+                    </ul>
+                        <a href="https://calendly.com/hosguljar/30min?month=2025-09" class="btn cta-btn" target="_blank">Book a Call</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="portfolio" id="portfolio">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Portfolio & Work</h2>
+                    <p class="section-subtitle">Explore a selection of my latest projects and creative solutions.</p>
+                </div>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item animate-on-scroll">
+                        <iframe src="https://www.behance.net/embed/project/231232393?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                    <div class="portfolio-item animate-on-scroll">
+                        <iframe src="https://www.behance.net/embed/project/230910193?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                    <div class="portfolio-item animate-on-scroll">
+                        <iframe src="https://www.behance.net/embed/project/229871467?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                    <div class="portfolio-item animate-on-scroll">
+                        <iframe src="https://www.behance.net/embed/project/229733255?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                    <div class="portfolio-item animate-on-scroll">
+                        <iframe src="https://www.behance.net/embed/project/229171179?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                    <div class="portfolio-item animate-on-scroll">
+                        <iframe src="https://www.behance.net/embed/project/233489765?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text animate-on-scroll">
+                        <h2 class="section-title" style="color: var(--primary);">About Me</h2>
+                        <p>👋 Hello, I'm Gulshan Nabila, a UI/UX Designer with over 3 years of experience specializing in Figma, Auto Layout, and Design Systems. I'm passionate about transforming complex ideas into seamless, user-friendly digital experiences.</p>
+                        <p>My user-centered approach ensures that from wireframes to pixel-perfect visuals, every project is intuitive, scalable, and impactful. I’m currently available for freelance and collaborative projects—let’s create something amazing together!</p>
+                    </div>
+                    <div class="about-highlights animate-on-scroll">
+                        <div class="highlight">
+                           <div class="highlight-content">
+                               <span class="highlight-number">3+</span>
+                               <span class="highlight-text">Years of Experience</span>
+                           </div>
+                        </div>
+                        <div class="highlight">
+                           <div class="highlight-content">
+                                <span class="highlight-number">Figma</span>
+                                <span class="highlight-text">Design Specialist</span>
+                           </div>
+                        </div>
+                        <div class="highlight">
+                           <div class="highlight-content">
+                                <span class="highlight-number">Auto Layout</span>
+                                <span class="highlight-text">Expert</span>
+                           </div>
+                        </div>
+                        <div class="highlight">
+                           <div class="highlight-content">
+                                <span class="highlight-number">Design Systems</span>
+                                <span class="highlight-text">Advocate</span>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="useful-links" id="useful-links">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <h2 class="section-title">Useful Links</h2>
+                    <p class="section-subtitle">Here are some platforms where you can find more of my work and connect with me.</p>
+                </div>
+                <div class="useful-links-grid">
+                    <a href="https://www.figma.com/design/pQFkPj3oinV4mE1npsg88T/Website-showcase" class="link-card animate-on-scroll" target="_blank">
+                        <div class="link-icon-wrapper">
+                            <i class="fab fa-figma"></i>
+                        </div>
+                        <div class="link-content">
+                            <h3 class="link-title">Figma Showcase</h3>
+                        </div>
+                    </a>
+                    <a href="https://www.behance.net/nabilaux" class="link-card animate-on-scroll" target="_blank">
+                        <div class="link-icon-wrapper">
+                            <i class="fab fa-behance"></i>
+                        </div>
+                        <div class="link-content">
+                            <h3 class="link-title">Behance</h3>
+                        </div>
+                    </a>
+                    <a href="https://dribbble.com/nabila_worldweb" class="link-card animate-on-scroll" target="_blank">
+                        <div class="link-icon-wrapper">
+                            <i class="fab fa-dribbble"></i>
+                        </div>
+                        <div class="link-content">
+                            <h3 class="link-title">Dribbble</h3>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/gulshan-nabila-a51526362/" class="link-card animate-on-scroll" target="_blank">
+                        <div class="link-icon-wrapper">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="link-content">
+                            <h3 class="link-title">LinkedIn</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact-wrapper animate-on-scroll">
+                    <div class="contact-text">
+                        <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                             <h2 class="section-title">Let’s build something exceptional.</h2>
+                             <p class="section-subtitle" style="margin-left: 0; max-width: 100%;">Currently available for freelance and remote UI/UX design opportunities. Ready to bring your vision to life?</p>
+                        </div>
+                        <div class="contact-details">
+                             <a href="mailto:gulshanaranabila@gmail.com" class="contact-detail-item">
+                                 <div class="contact-icon-wrapper"><i class="fas fa-envelope"></i></div>
+                                 <div>
+                                     <h4>Email Me</h4>
+                                     <span>gulshanaranabila@gmail.com</span>
+                                 </div>
+                             </a>
+                             <a href="tel:+8801871637028" class="contact-detail-item">
+                                 <div class="contact-icon-wrapper"><i class="fas fa-phone"></i></div>
+                                 <div>
+                                     <h4>Call Me</h4>
+                                     <span>+880 18 7163 7028</span>
+                                 </div>
+                             </a>
+                        </div>
+                    </div>
+                    <div class="contact-form-wrapper">
+                         <h3>Send me a message</h3>
+                         <form action="#" method="POST">
+                             <div class="form-group">
+                                 <input type="text" name="name" placeholder="Your Name" required>
+                             </div>
+                             <div class="form-group">
+                                 <input type="email" name="email" placeholder="Your Email" required>
+                             </div>
+                             <div class="form-group">
+                                 <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                             </div>
+                             <button type="submit" class="btn btn-primary btn-colorful" style="width: 100%;">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                             </button>
+                         </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <div class="logo">GULSHAN NABILA</div>
+                        <p class="footer-about">Professional UI/UX Designer crafting exceptional digital experiences.</p>
+                         <div class="footer-social">
+                            <a href="https://www.behance.net/nabilaux" target="_blank" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                            <a href="https://dribbble.com/nabila_worldweb" target="_blank" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                            <a href="https://www.linkedin.com/in/gulshan-nabila-a51526362/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.figma.com/design/pQFkPj3oinV4mE1npsg88T/Website-showcase" target="_blank" aria-label="Figma"><i class="fab fa-figma"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                         <h4 class="footer-heading">Services</h4>
+                         <ul class="footer-links">
+                             <li><a href="#services">Logo Design</a></li>
+                             <li><a href="#services">Landing Page Design</a></li>
+                             <li><a href="#services">Mobile App Design</a></li>
+                             <li><a href="#services">Website Design</a></li>
+                             <li><a href="#services">Design + Development</a></li>
+                         </ul>
+                    </div>
+                    <div class="footer-col">
+                         <h4 class="footer-heading">Contact</h4>
+                         <ul class="footer-contact">
+                             <li><i class="fas fa-envelope"></i> gulshanaranabila@gmail.com</li>
+                             <li><i class="fas fa-phone"></i> +880 18 7163 7028</li>
+                         </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Gulshan Nabila. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('.header').offsetHeight + 20;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        // Close mobile menu on click
+                        const mainNav = document.querySelector('.main-nav');
+                        if(mainNav.classList.contains('active')){
+                            mainNav.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            
+            mobileToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
+
