@@ -911,7 +911,7 @@
             }
         }
 
-        @media (max-width: 768px) {
+      @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -935,10 +935,10 @@
                 grid-template-columns: 1fr;
             }
             
-            .services-grid, .portfolio-grid, .useful-links-grid {
-                 grid-template-columns: 1fr;
+            .services-grid, .portfolio-grid {
+                grid-template-columns: 1fr;
             }
-
+            
             .useful-links-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -946,44 +946,30 @@
             .contact-wrapper {
                 padding: 2rem;
             }
-            @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
+
+            /* --- FOOTER FIX STARTS HERE --- */
+            .footer-grid {
+                /* Stacks the grid items into a single column */
+                grid-template-columns: 1fr; 
+                gap: 2.5rem; /* Adds some space between stacked columns */
             }
 
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .footer-col {
+                 /* Centers the text content (headings, links) in each column */
+                text-align: center;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .about-highlights {
-                grid-template-columns: 1fr;
-            }
-            
-            .services-grid, .portfolio-grid, .useful-links-grid {
-                 grid-template-columns: 1fr;
-            }
-
-            .contact-wrapper {
-                padding: 2rem;
-            }
             .footer-col .footer-about {
+                /* Ensures the about text is centered within its container */
                 margin-left: auto;
                 margin-right: auto;
             }
+
             .footer-social {
+                /* Centers the social media icons */
                 justify-content: center;
             }
+            /* --- FOOTER FIX ENDS HERE --- */
         }
 
         /* Animations */
